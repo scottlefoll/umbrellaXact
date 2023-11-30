@@ -3,6 +3,9 @@
 // The URL to send the GET request to
 $url = 'https://umbrellaxact-contacts.onrender.com/';
 
+// Subtract 5 hours from the current server time
+$localTime = strtotime("-5 hours");
+
 // Initialize cURL session
 $ch = curl_init();
 
@@ -25,12 +28,18 @@ curl_close($ch);
 // Check if an error occurred
 if (isset($error_msg)) {
     // Log the error
-    file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', date('Y-m-d H:i:s') . " - Error accessing URL: " . $error_msg . "\n", FILE_APPEND);
+    // Format the local time and create the log entry
+    $logEntry = date('Y-m-d H:i:s', $localTime) . " - Error accessing URL: " . $error_msg . "\n";
+    // Append the error message to the log file
+    file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', $logEntry, FILE_APPEND);
     // Echo the error message
     echo "Error: " . $error_msg . "\n";
 } else {
     // Log the response
-    file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', date('Y-m-d H:i:s') . " - Accessed URL. Response: " . $response . "\n", FILE_APPEND);
+    // Format the local time and create the log entry
+    $logEntry = date('Y-m-d H:i:s', $localTime) . " - Accessed URL. Response: " . $response . "\n";
+    // Append the log entry to the log file
+    file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', $logEntry, FILE_APPEND);
     // Echo the response
     echo "Response: " . $response . "\n";
 }
