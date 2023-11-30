@@ -29,7 +29,7 @@ curl_close($ch);
 if (isset($error_msg)) {
     // Log the error
     // Format the local time and create the log entry
-    $logEntry = date('Y-m-d H:i:s', $localTime) . " - Error accessing URL: " . $error_msg . "\n";
+    $logEntry = date('Y-m-d H:i:s', $localTime) . " EST - Error accessing URL: " . $error_msg . "\n";
     // Append the error message to the log file
     file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', $logEntry, FILE_APPEND);
     // Echo the error message
@@ -37,7 +37,7 @@ if (isset($error_msg)) {
 } else {
     // Log the response
     // Format the local time and create the log entry
-    $logEntry = date('Y-m-d H:i:s', $localTime) . " - Accessed URL. Response: " . $response . "\n";
+    $logEntry = date('Y-m-d H:i:s', $localTime) . " EST - Accessed URL. Response: " . $response . "\n";
     // Append the log entry to the log file
     file_put_contents('/home/u716979257/domains/umbrellaxact.com/public_html/cron_log.txt', $logEntry, FILE_APPEND);
     // Echo the response
